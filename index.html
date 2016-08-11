@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <script src="jquery-3.1.0.js"></script>
-    <link rel="stylesheet" type="text/css" href="styles.css">
+    <script src="js/jquery-3.1.0.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
 
@@ -13,9 +13,8 @@
     <div class="results">
     <div class="icon"></div>
     <div class="temp"></div>
-    <div class="desc1">
+    <div class="desc1"></div>
     <div class="desc2"></div>
-    </div>
     </div>
     <button id="get-weather">Get Weather</button>
 </div>
@@ -25,13 +24,16 @@
     $('button').on('click', function () {
           var  url='http://api.openweathermap.org/data/2.5/weather?q=Toro' +
             'nto&units=metric&appid=4c720738a83c68deb09d854dbe803784';
+           var onAlways = function (){
+        $("button").hide();
+      }
         
-        $.getJSON(url).done(function (weatherData){
+        $.getJSON(url).always(onAlways).done(function (weatherData){
             console.log(weatherData.weather[0].description)
             $('.desc2').append(weatherData.weather[0].description)
             $('.desc1').append(weatherData.weather[0].main)
-            $('.temp').append(weatherData.main.temp)
-            $(".icon").append("<img src='http://openweathermap.org/img/w/" + weatherData.weather[0].icon + ".png' alt='Icon depicting current weather.'>");
+            $('.temp').append(Math.round(weatherData.main.temp) + "&deg; C")
+            $(".icon").append("<img src='http://openweathermap.org/img/w/" + weatherData.weather[0].icon + ".png'  alt='Icon depicting current weather.'>");
         });
         });
     var ta = document.getElementById('ta');
