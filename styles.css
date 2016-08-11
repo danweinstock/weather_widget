@@ -1,0 +1,32 @@
+.weather-widget {
+    background: grey;
+    margin: auto;
+    width: 300px;
+    height: 180px;
+    border: 1px solid black;
+    border-radius: 20px;
+    box-shadow: 10px 10px 50px #888888;
+    overflow: hidden;
+    text-align:center;
+    font-family: "Mono";
+}
+
+
+h1 {
+    color: darkgrey;
+    text-decoration: underline;
+}
+
+.results {
+    margin:0 auto;
+}
+
+button:hover {
+    color: red;
+}
+
+button {
+    border-radius: 5%;
+    font-family:arial;
+
+}

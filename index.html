@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="jquery-3.1.0.js"></script>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+
+<div class="weather-widget" id="ta">
+    <h1>Toronto Weather</h1>
+    <div class="results">
+    <div class="icon"></div>
+    <div class="temp"></div>
+    <div class="desc1">
+    <div class="desc2"></div>
+    </div>
+    </div>
+    <button id="get-weather">Get Weather</button>
+</div>
+
+<script>$( document ).ready(function() {
+    console.log("ready!");
+    $('button').on('click', function () {
+          var  url='http://api.openweathermap.org/data/2.5/weather?q=Toro' +
+            'nto&units=metric&appid=4c720738a83c68deb09d854dbe803784';
+        
+        $.getJSON(url).done(function (weatherData){
+            console.log(weatherData.weather[0].description)
+            $('.desc2').append(weatherData.weather[0].description)
+            $('.desc1').append(weatherData.weather[0].main)
+            $('.temp').append(weatherData.main.temp)
+            $(".icon").append("<img src='http://openweathermap.org/img/w/" + weatherData.weather[0].icon + ".png' alt='Icon depicting current weather.'>");
+        });
+        });
+    var ta = document.getElementById('ta');
+    ta.onclick = function(){
+    this.style.height = "300px";
+}
+
+    });
+
+
+</script>
+</body>
+</html>
